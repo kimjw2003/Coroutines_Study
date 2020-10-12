@@ -5,6 +5,8 @@ import android.os.Bundle
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,15 +17,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun test(){
-
         GlobalScope.launch {
-            delay(1000L)
+            Thread.sleep(1000L)
             println("World!")
         } //GlobalScope - CoroutineScope의 한 종류 , launch - 스코프가 있어야 동작가능
 
         println("Hello,")
-        Thread.sleep(2000L)
-
+        runBlocking {
+            delay(2000L)
+        } //자신이 호출한 스레드를 블로킹
 
     }
 }
