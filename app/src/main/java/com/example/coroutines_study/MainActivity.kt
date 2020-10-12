@@ -2,6 +2,7 @@ package com.example.coroutines_study
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -16,16 +17,14 @@ class MainActivity : AppCompatActivity() {
         test()
     }
 
-    private fun test(){
-        GlobalScope.launch {
-            Thread.sleep(1000L)
-            println("World!")
+    private fun test() = runBlocking {
+        val job = GlobalScope.launch {
+            delay(3000L)
+            Log.d("Logd", "World!")
         } //GlobalScope - CoroutineScope의 한 종류 , launch - 스코프가 있어야 동작가능
 
-        println("Hello,")
-        runBlocking {
-            delay(2000L)
-        } //자신이 호출한 스레드를 블로킹
+        Log.d("Logd","Hello,")
+            job.join()
 
+        } //runBlocking - 자신이 호출한 스레드를 블로킹
     }
-}
