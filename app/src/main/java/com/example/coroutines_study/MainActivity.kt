@@ -15,12 +15,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun test(){
+
         GlobalScope.launch {
             delay(1000L)
             println("World!")
-        }
+        } //GlobalScope - CoroutineScope의 한 종류 , launch - 스코프가 있어야 동작가능
 
         println("Hello,")
         Thread.sleep(2000L)
+
+
     }
 }
