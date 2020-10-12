@@ -14,7 +14,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        test()
+
+        //test()
+        structuredConcurrency()
     }
 
     private fun test() = runBlocking {
@@ -27,4 +29,15 @@ class MainActivity : AppCompatActivity() {
             job.join()
 
         } //runBlocking - 자신이 호출한 스레드를 블로킹
+
+
+    private fun structuredConcurrency() = runBlocking {// join을 여러번 사용하지 않아도 로그를 여러번 찍을 수 있음
+        launch {
+            delay(1000L)
+            Log.d("Logd", "World!")
+        }
+        Log.d("Logd","Hello,")
+    } //코드의 간결화 가능
+
+
     }
