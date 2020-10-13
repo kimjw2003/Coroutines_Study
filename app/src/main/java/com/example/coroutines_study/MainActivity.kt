@@ -32,12 +32,15 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun structuredConcurrency() = runBlocking {// join을 여러번 사용하지 않아도 로그를 여러번 찍을 수 있음
-        launch {
-            delay(1000L)
-            Log.d("Logd", "World!")
-        }
-        Log.d("Logd","Hello,")
-    } //코드의 간결화 가능
+            launch {
+                suspend()
+            }
+            Log.d("Logd","Hello,")
+        } //코드의 간결화 가능
 
+    private suspend fun suspend(){ //suspend를 사용하면 따로 함수로 뺄수 있음
+        delay(1000L)
+        Log.d("Logd", "World!")
+        }
 
     }
