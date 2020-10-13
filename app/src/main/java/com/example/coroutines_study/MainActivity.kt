@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        //코루틴을 사용하면 쓰레드를 사용하는것보다 메모리 누수가 적고 속도가 빠르고 코드가 간결화됨
 
         //test()
         structuredConcurrency()
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         val job = GlobalScope.launch {
             delay(3000L)
             Log.d("Logd", "World!")
-        } //GlobalScope - CoroutineScope의 한 종류 , launch - 스코프가 있어야 동작가능
+        } //GlobalScope , launch - 스코프가 있어야 동작가능
 
         Log.d("Logd","Hello,")
             job.join()
@@ -42,5 +42,7 @@ class MainActivity : AppCompatActivity() {
         delay(1000L)
         Log.d("Logd", "World!")
         }
+
+
 
     }
